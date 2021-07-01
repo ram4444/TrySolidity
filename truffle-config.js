@@ -21,7 +21,7 @@
 // Initialize HDWalletProvider
 const HDWalletProvider = require("truffle-hdwallet-provider");
 
-const LoomTruffleProvider = require('loom-truffle-provider');
+//const LoomTruffleProvider = require('loom-truffle-provider');
 
 const { readFileSync } = require('fs')
 const path = require('path')
@@ -92,7 +92,7 @@ module.exports = {
       host: "127.0.0.1",
       port: 7545,
       network_id: "*",
-      gas: 9500000
+      gas: 6721975
     },
     // Configuration for mainnet
     mainnet: {
@@ -160,7 +160,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.5.1"
+      version: "0.8.5"
       // version: "0.5.1",    // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion

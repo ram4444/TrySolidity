@@ -1,12 +1,14 @@
-const { deployProxy } = require('@openzeppelin/truffle-upgrades');
+const { deployProxy, upgradeProxy } = require('@openzeppelin/truffle-upgrades');
 
-const Box = artifacts.require('Box');
+const TestUpgradable = artifacts.require('TestUpgradable');
+const TestUpgradableV2 = artifacts.require('TestUpgradableV2');
 
 module.exports = async function (deployer) {
-  const instance = await deployProxy(Box, [42], { deployer });
+  //const instance = await deployProxy(TestUpgradable, [42], { deployer });
+  const instance = await deployProxy(TestUpgradable, { deployer });
   console.log('Deployed', instance.address);
   //-----------------NEXT time---------------
-  const existing = await Box.deployed();
-  const instance = await upgradeProxy(existing.address, BoxV2, { deployer });
-  console.log("Upgraded", instance.address);
+  const existing = await TestUpgradable.deployed();
+  const instance2 = await upgradeProxy(existing.address, TestUpgradableV2, { deployer });
+  console.log("Upgraded", instance2.address);
 };
