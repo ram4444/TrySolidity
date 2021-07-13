@@ -6,6 +6,8 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract TestPayable is Ownable{
     
+    event evtEmit(string _test);
+
     receive() external payable {} 
 
     function passEther() public payable {
@@ -14,6 +16,18 @@ contract TestPayable is Ownable{
 
     function withdraw() external onlyOwner {
         payable(owner()).transfer(address(this).balance);
+    }
+
+    function drycall() public {
+        
+    }
+
+    function testEmit() public {
+        emit evtEmit("from Event");    
+    }
+
+    function testPayableEmit(string memory str) public {
+        emit evtEmit(str);    
     }
     
 }
