@@ -4,6 +4,8 @@ pragma experimental ABIEncoderV2;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
+// To redeploy
+//npx truffle migrate --reset
 contract TestPayable is Ownable{
     
     event evtEmit(string _test);
@@ -15,11 +17,7 @@ contract TestPayable is Ownable{
     }
 
     function withdraw() external onlyOwner {
-        payable(owner()).transfer(address(this).balance);
-    }
-
-    function drycall() public {
-        
+        return payable(owner()).transfer(address(this).balance);
     }
 
     function testEmit() public {
@@ -28,6 +26,10 @@ contract TestPayable is Ownable{
 
     function testPayableEmit(string memory str) public {
         emit evtEmit(str);    
+    }
+
+    function testPayableReturn(string memory str) pure public returns (string memory rtn){
+        return string(abi.encodePacked("return: ", str));
     }
     
 }
